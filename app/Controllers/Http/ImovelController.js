@@ -5,7 +5,8 @@ const Imovel = use('App/Models/Imovel')
 class ImovelController {
 
   async index ({ request, response, view }) {
-    const imoveis = Imovel.all();
+    const imoveis = Imovel.all()
+    //adicionar query de geolocalização
 
     return imoveis;
   }
