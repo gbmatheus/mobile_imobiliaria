@@ -26,5 +26,5 @@ Route.post('/auth', 'AuthController.store')
 
 Route.resource('imoveis', 'ImovelController')
   .apiOnly()
-  // .middleware('auth')
+  .middleware('auth')
 
