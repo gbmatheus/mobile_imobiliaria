@@ -14,7 +14,7 @@ class ImovelSchema extends Schema {
       table.string('proprietario').notNullable()
       table.string('tipo').notNullable()
       table.string('servico').notNullable()
-      table.decimal('preco').notNullable()
+      table.decimal('preco', 9, 2).notNullable()
       // table.decimal('latitude', 9, 6).notNullable()
       // table.decimal('longitude', 9, 6).notNullable()
       table.timestamps()
