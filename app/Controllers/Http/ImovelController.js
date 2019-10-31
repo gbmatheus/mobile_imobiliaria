@@ -10,7 +10,21 @@ class ImovelController {
     return imoveis;
   }
 
-  async store ({ request, response }) {
+  async store ({ auth, request, response }) {
+    const { id } = auth.user
+
+    const data = request.only([
+      'titulo',
+      'endereco',
+      'proprietario',
+      'tipo',
+      'servico',
+      'preco'
+    ])
+
+    const imovel = await Imovel.create({ ...data, user_id: id})
+
+    return imovel
   }
 
   async show ({ params, request, response, view }) {
@@ -22,6 +36,22 @@ class ImovelController {
   }
 
   async update ({ params, request, response }) {
+    const imovel = await Imovel.findOrFail(params.id)
+
+    const data = request.only([
+      'titulo',
+      'endereco',
+      'proprietario',
+      'tipo',
+      'servico',
+      'preco'
+    ])
+
+    imovel.merge(data)
+
+    await imovel.save()
+    
+    return imovel
   }
 
   async destroy ({ params, request, response }) {
