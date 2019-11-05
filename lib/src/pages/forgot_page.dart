@@ -5,19 +5,15 @@ import 'package:imobe_app/src/base/input_field_base.dart' as InputTF;
 import 'package:imobe_app/src/base/raised_button_base.dart' as RaisedBtn;
 import 'package:imobe_app/src/base/flat_button_base.dart' as FlatBtn;
 
-class LoginPage extends StatefulWidget {
+class ForgotPage extends StatefulWidget {
   @override
-  _LoginPageState createState() {
-    var loginPageState = _LoginPageState();
-    return loginPageState;
-  }
+  _ForgotPageState createState() => _ForgotPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _ForgotPageState extends State<ForgotPage> {
   final _formKey = GlobalKey<FormState>();
 
   String _email;
-  String _senha;
 
   @override
   Widget build(BuildContext context) {
@@ -35,36 +31,28 @@ class _LoginPageState extends State<LoginPage> {
                 LogoImage(),
                 InputTF.InputTextField(
                   label: 'Email',
+                  helpText:
+                      'O código de recuperação será enviado para seu email',
                   save: (value) => _email = value.trim(),
                   valide: (value) =>
                       value.trim().isEmpty ? 'Email obrigatório' : null,
                   inputType: TextInputType.emailAddress,
                 ),
-                InputTF.InputTextField(
-                  label: 'Senha',
-                  save: (value) => _senha = value.trim(),
-                  valide: (value) =>
-                      value.trim().isEmpty ? 'Senha obrigatória' : null,
-                  obscure: true,
-                ),
                 RaisedBtn.RaisedPrimaryButton(
-                    label: 'Entrar',
+                    label: 'Enviar',
                     onPressed: () {
-                      print('Entrar $_formKey');
-                      Navigator.popAndPushNamed(context, '/home');
+                      print('Enviar código $_formKey');
+                      if (_formKey.currentState.validate()) {
+                        Scaffold.of(context).showSnackBar(SnackBar(
+                          content: Text('Código enviado'),
+                        ));
+                        // Navigator.popAndPushNamed(context, '/home');
+                      }
                     }),
                 FlatBtn.FlatPrimaryButton(
-                    label: 'Esqueceu a senha?',
+                    label: 'Voltar',
                     onPressed: () {
-                      Navigator.popAndPushNamed(context, '/forgot');
-                    }),
-                SizedBox(
-                  height: 20.0,
-                ),
-                FlatBtn.FlatPrimaryButton(
-                    label: 'Cria conta',
-                    onPressed: () {
-                      Navigator.popAndPushNamed(context, '/signup');
+                      Navigator.popAndPushNamed(context, '/login');
                     }),
               ],
             ),

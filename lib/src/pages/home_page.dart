@@ -11,7 +11,8 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.purple[300],
       body: Center(
-        child: Text('Arrraio Silveri'),
+        child: Text('Seja bem vindo ao mundo temático do IMOBE\n\nCasa engraçada, sem teto\nSem nada, niguém pode entrar\nLocalizada na Rua dos Bobos, 0',
+        style: TextStyle(color: Colors.white, fontFamily: 'Montserrat', fontSize: 20.0),),
       ),
       // resizeToAvoidBottomInset: false,
     );

@@ -5,19 +5,18 @@ import 'package:imobe_app/src/base/input_field_base.dart' as InputTF;
 import 'package:imobe_app/src/base/raised_button_base.dart' as RaisedBtn;
 import 'package:imobe_app/src/base/flat_button_base.dart' as FlatBtn;
 
-class LoginPage extends StatefulWidget {
+class SignUpPage extends StatefulWidget {
   @override
-  _LoginPageState createState() {
-    var loginPageState = _LoginPageState();
-    return loginPageState;
-  }
+  SignUpPageState createState() => SignUpPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class SignUpPageState extends State<SignUpPage> {
   final _formKey = GlobalKey<FormState>();
 
   String _email;
+  String _cnpj;
   String _senha;
+  String _confimaSenha;
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +32,13 @@ class _LoginPageState extends State<LoginPage> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 LogoImage(),
+                InputTF.InputMaskTextField(
+                  label: 'CNPJ',
+                  masked: '00.000.000/0000-00',
+                  save: (value) => _cnpj = value.trim(),
+                  valide: (value) =>
+                      value.trim().isEmpty ? 'CNPJ obrigatório' : null,
+                ),
                 InputTF.InputTextField(
                   label: 'Email',
                   save: (value) => _email = value.trim(),
@@ -42,29 +48,34 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 InputTF.InputTextField(
                   label: 'Senha',
+                  obscure: true,
                   save: (value) => _senha = value.trim(),
                   valide: (value) =>
                       value.trim().isEmpty ? 'Senha obrigatória' : null,
+                ),
+                InputTF.InputTextField(
+                  label: 'Confirmar senha',
                   obscure: true,
+                  save: (value) => _confimaSenha = value.trim(),
+                  valide: (value) =>
+                      value == _senha ? 'Senha não confere' : null,
                 ),
                 RaisedBtn.RaisedPrimaryButton(
-                    label: 'Entrar',
-                    onPressed: () {
-                      print('Entrar $_formKey');
-                      Navigator.popAndPushNamed(context, '/home');
-                    }),
-                FlatBtn.FlatPrimaryButton(
-                    label: 'Esqueceu a senha?',
-                    onPressed: () {
-                      Navigator.popAndPushNamed(context, '/forgot');
-                    }),
-                SizedBox(
-                  height: 20.0,
+                  label: 'Cadastrar',
+                  onPressed: () {
+                    print('Cadastrar conta $_formKey');
+                    if (_formKey.currentState.validate()) {
+                      Scaffold.of(context).showSnackBar(SnackBar(
+                        content: Text('Verificando dados'),
+                      ));
+                      // Navigator.popAndPushNamed(context, '/home');
+                    }
+                  },
                 ),
                 FlatBtn.FlatPrimaryButton(
-                    label: 'Cria conta',
+                    label: 'Já possui conta?',
                     onPressed: () {
-                      Navigator.popAndPushNamed(context, '/signup');
+                      Navigator.popAndPushNamed(context, '/Login');
                     }),
               ],
             ),
