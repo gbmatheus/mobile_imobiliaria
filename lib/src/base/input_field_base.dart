@@ -8,12 +8,12 @@ class InputTextField extends StatelessWidget {
   final TextInputType inputType;
   final bool obscure;
   final TextCapitalization capitalize;
-  final String Function(String value) valide;
+  final String Function(String value) valid;
   final void Function(String value) save;
 
   InputTextField({
     @required this.label,
-    @required this.valide,
+    @required this.valid,
     @required this.save,
     this.helpText = '',
     this.inputType = TextInputType.text,
@@ -24,7 +24,7 @@ class InputTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: EdgeInsets.only(bottom: 10.0),
+        padding: EdgeInsets.only(bottom: 5.0),
         child: TextFormField(
           maxLines: 1,
           keyboardType: inputType,
@@ -43,7 +43,7 @@ class InputTextField extends StatelessWidget {
             helperStyle: TextStyle(color: Colors.purple, fontSize: 10.0),
             errorStyle: TextStyle(fontSize: 10.0),
           ),
-          validator: this.valide,
+          validator: this.valid,
           onSaved: this.save,
         ));
   }
@@ -53,13 +53,13 @@ class InputMaskTextField extends StatelessWidget {
   final String masked;
   final String label;
   final String helpText;
-  final String Function(String value) valide;
+  final String Function(String value) valid;
   final void Function(String value) save;
 
   InputMaskTextField({
     @required this.masked,
     @required this.label,
-    @required this.valide,
+    @required this.valid,
     @required this.save,
     this.helpText = '',
   });
@@ -67,13 +67,13 @@ class InputMaskTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: EdgeInsets.only(bottom: 10.0),
+        padding: EdgeInsets.only(bottom: 5.0),
         child: TextFormField(
           keyboardType: TextInputType.number,
           cursorColor: Colors.purple,
           decoration: InputDecoration(
-            enabledBorder: UnderlineInputBorder(
-                borderSide: BorderSide(color: Colors.purple[200])),
+            // enabledBorder: UnderlineInputBorder(
+            //     borderSide: BorderSide(color: Colors.purple[200])),
             focusedBorder: UnderlineInputBorder(
                 borderSide: BorderSide(color: Colors.purple)),
             filled: true,
@@ -87,7 +87,7 @@ class InputMaskTextField extends StatelessWidget {
           inputFormatters: [
             WhitelistingTextInputFormatter(RegExp("[0-9]")),
           ],
-          validator: this.valide,
+          validator: this.valid,
           onSaved: this.save,
         ));
   }

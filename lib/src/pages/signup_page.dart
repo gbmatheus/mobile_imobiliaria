@@ -36,13 +36,13 @@ class SignUpPageState extends State<SignUpPage> {
                   label: 'CNPJ',
                   masked: '00.000.000/0000-00',
                   save: (value) => _cnpj = value.trim(),
-                  valide: (value) =>
+                  valid: (value) =>
                       value.trim().isEmpty ? 'CNPJ obrigatório' : null,
                 ),
                 InputTF.InputTextField(
                   label: 'Email',
                   save: (value) => _email = value.trim(),
-                  valide: (value) =>
+                  valid: (value) =>
                       value.trim().isEmpty ? 'Email obrigatório' : null,
                   inputType: TextInputType.emailAddress,
                 ),
@@ -50,24 +50,24 @@ class SignUpPageState extends State<SignUpPage> {
                   label: 'Senha',
                   obscure: true,
                   save: (value) => _senha = value.trim(),
-                  valide: (value) =>
+                  valid: (value) =>
                       value.trim().isEmpty ? 'Senha obrigatória' : null,
                 ),
                 InputTF.InputTextField(
                   label: 'Confirmar senha',
                   obscure: true,
                   save: (value) => _confimaSenha = value.trim(),
-                  valide: (value) =>
-                      value == _senha ? 'Senha não confere' : null,
+                  valid: (value) =>
+                      value != _senha ? 'Senha obrigatória' : null,
                 ),
                 RaisedBtn.RaisedPrimaryButton(
                   label: 'Cadastrar',
                   onPressed: () {
-                    print('Cadastrar conta $_formKey');
+                    print('Cadastrar conta');
                     if (_formKey.currentState.validate()) {
-                      Scaffold.of(context).showSnackBar(SnackBar(
+                      SnackBar(
                         content: Text('Verificando dados'),
-                      ));
+                      );
                       // Navigator.popAndPushNamed(context, '/home');
                     }
                   },
@@ -75,8 +75,11 @@ class SignUpPageState extends State<SignUpPage> {
                 FlatBtn.FlatPrimaryButton(
                     label: 'Já possui conta?',
                     onPressed: () {
-                      Navigator.popAndPushNamed(context, '/Login');
+                      Navigator.popAndPushNamed(context, '/login');
                     }),
+                SizedBox(
+                  height: 80.0,
+                )
               ],
             ),
           ),

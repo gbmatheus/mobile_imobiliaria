@@ -34,18 +34,20 @@ class _ForgotPageState extends State<ForgotPage> {
                   helpText:
                       'O código de recuperação será enviado para seu email',
                   save: (value) => _email = value.trim(),
-                  valide: (value) =>
+                  valid: (value) =>
                       value.trim().isEmpty ? 'Email obrigatório' : null,
                   inputType: TextInputType.emailAddress,
                 ),
                 RaisedBtn.RaisedPrimaryButton(
                     label: 'Enviar',
                     onPressed: () {
-                      print('Enviar código $_formKey');
+                      print('Enviar código');
+                      print('Email $_email');
+                      print(_formKey.toString());
                       if (_formKey.currentState.validate()) {
-                        Scaffold.of(context).showSnackBar(SnackBar(
+                        SnackBar(
                           content: Text('Código enviado'),
-                        ));
+                        );
                         // Navigator.popAndPushNamed(context, '/home');
                       }
                     }),
@@ -54,6 +56,9 @@ class _ForgotPageState extends State<ForgotPage> {
                     onPressed: () {
                       Navigator.popAndPushNamed(context, '/login');
                     }),
+                SizedBox(
+                  height: 80.0,
+                )
               ],
             ),
           ),

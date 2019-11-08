@@ -35,23 +35,29 @@ class _LoginPageState extends State<LoginPage> {
                 LogoImage(),
                 InputTF.InputTextField(
                   label: 'Email',
-                  save: (value) => _email = value.trim(),
-                  valide: (value) =>
+                  save: (value) =>
+                      {_email = value.trim(), print('Email $_email')},
+                  valid: (value) =>
                       value.trim().isEmpty ? 'Email obrigatório' : null,
                   inputType: TextInputType.emailAddress,
                 ),
                 InputTF.InputTextField(
                   label: 'Senha',
-                  save: (value) => _senha = value.trim(),
-                  valide: (value) =>
+                  save: (value) =>
+                      {_senha = value.trim(), print('Senha $_senha')},
+                  valid: (value) =>
                       value.trim().isEmpty ? 'Senha obrigatória' : null,
                   obscure: true,
                 ),
                 RaisedBtn.RaisedPrimaryButton(
                     label: 'Entrar',
                     onPressed: () {
-                      print('Entrar $_formKey');
-                      Navigator.popAndPushNamed(context, '/home');
+                      if (_formKey.currentState.validate()) {
+                        print('Entrar');
+                        print('Email $_email - Senha $_senha');
+                        print(_formKey.toString());
+                        Navigator.popAndPushNamed(context, '/home');
+                      }
                     }),
                 FlatBtn.FlatPrimaryButton(
                     label: 'Esqueceu a senha?',
@@ -66,6 +72,9 @@ class _LoginPageState extends State<LoginPage> {
                     onPressed: () {
                       Navigator.popAndPushNamed(context, '/signup');
                     }),
+                SizedBox(
+                  height: 80.0,
+                )
               ],
             ),
           ),
