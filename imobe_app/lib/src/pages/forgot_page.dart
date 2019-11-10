@@ -31,6 +31,7 @@ class _ForgotPageState extends State<ForgotPage> {
                 LogoImage(),
                 InputTF.InputTextField(
                   label: 'Email',
+                  icon: Icon(Icons.mail, color: Colors.purple,),
                   helpText:
                       'O código de recuperação será enviado para seu email',
                   save: (value) => _email = value.trim(),

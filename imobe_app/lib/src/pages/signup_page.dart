@@ -35,12 +35,14 @@ class SignUpPageState extends State<SignUpPage> {
                 InputTF.InputMaskTextField(
                   label: 'CNPJ',
                   masked: '00.000.000/0000-00',
+                  icon: Icon(Icons.work, color: Colors.purple,),
                   save: (value) => _cnpj = value.trim(),
                   valid: (value) =>
                       value.trim().isEmpty ? 'CNPJ obrigatório' : null,
                 ),
                 InputTF.InputTextField(
                   label: 'Email',
+                  icon: Icon(Icons.mail, color: Colors.purple,),
                   save: (value) => _email = value.trim(),
                   valid: (value) =>
                       value.trim().isEmpty ? 'Email obrigatório' : null,
@@ -48,6 +50,7 @@ class SignUpPageState extends State<SignUpPage> {
                 ),
                 InputTF.InputTextField(
                   label: 'Senha',
+                  icon: Icon(Icons.lock, color: Colors.purple,),
                   obscure: true,
                   save: (value) => _senha = value.trim(),
                   valid: (value) =>
@@ -55,6 +58,7 @@ class SignUpPageState extends State<SignUpPage> {
                 ),
                 InputTF.InputTextField(
                   label: 'Confirmar senha',
+                  icon: Icon(Icons.lock, color: Colors.purple,),
                   obscure: true,
                   save: (value) => _confimaSenha = value.trim(),
                   valid: (value) =>

@@ -35,6 +35,7 @@ class _LoginPageState extends State<LoginPage> {
                 LogoImage(),
                 InputTF.InputTextField(
                   label: 'Email',
+                  icon: Icon(Icons.mail, color: Colors.purple,),
                   save: (value) =>
                       {_email = value.trim(), print('Email $_email')},
                   valid: (value) =>
@@ -43,6 +44,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 InputTF.InputTextField(
                   label: 'Senha',
+                  icon: Icon(Icons.lock, color: Colors.purple,),
                   save: (value) =>
                       {_senha = value.trim(), print('Senha $_senha')},
                   valid: (value) =>
@@ -56,7 +58,7 @@ class _LoginPageState extends State<LoginPage> {
                         print('Entrar');
                         print('Email $_email - Senha $_senha');
                         print(_formKey.toString());
-                        Navigator.popAndPushNamed(context, '/home');
+                        Navigator.popAndPushNamed(context, '/principal');
                       }
                     }),
                 FlatBtn.FlatPrimaryButton(
