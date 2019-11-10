@@ -4,6 +4,7 @@ import 'package:flutter_masked_text/flutter_masked_text.dart';
 
 class InputTextField extends StatelessWidget {
   final String label;
+  final Icon icon;
   final String helpText;
   final TextInputType inputType;
   final bool obscure;
@@ -15,6 +16,7 @@ class InputTextField extends StatelessWidget {
     @required this.label,
     @required this.valid,
     @required this.save,
+    this.icon = null,
     this.helpText = '',
     this.inputType = TextInputType.text,
     this.obscure = false,
@@ -32,11 +34,12 @@ class InputTextField extends StatelessWidget {
           cursorColor: Colors.purple,
           textCapitalization: capitalize,
           decoration: InputDecoration(
-            // enabledBorder: UnderlineInputBorder(
-            //     borderSide: BorderSide(color: Colors.purple[200])),
-            focusedBorder: UnderlineInputBorder(
+            enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.purple[200])),
+            focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.purple)),
             filled: true,
+            prefixIcon: icon,
             labelText: label,
             labelStyle: TextStyle(color: Colors.purple, fontSize: 16.0),
             helperText: this.helpText,
@@ -52,6 +55,7 @@ class InputTextField extends StatelessWidget {
 class InputMaskTextField extends StatelessWidget {
   final String masked;
   final String label;
+  final Icon icon;
   final String helpText;
   final String Function(String value) valid;
   final void Function(String value) save;
@@ -61,6 +65,7 @@ class InputMaskTextField extends StatelessWidget {
     @required this.label,
     @required this.valid,
     @required this.save,
+    this.icon = null,
     this.helpText = '',
   });
 
@@ -72,11 +77,12 @@ class InputMaskTextField extends StatelessWidget {
           keyboardType: TextInputType.number,
           cursorColor: Colors.purple,
           decoration: InputDecoration(
-            // enabledBorder: UnderlineInputBorder(
-            //     borderSide: BorderSide(color: Colors.purple[200])),
-            focusedBorder: UnderlineInputBorder(
+            enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.purple[200])),
+            focusedBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.purple)),
             filled: true,
+            prefixIcon: icon,
             labelText: this.label,
             labelStyle: TextStyle(color: Colors.purple, fontSize: 16.0),
             helperText: this.helpText,
