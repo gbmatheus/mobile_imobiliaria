@@ -12,7 +12,7 @@ Route.post('/auth', 'AuthController.store')
 
 Route.resource('imoveis', 'ImovelController')
   .apiOnly()
-  // .middleware('auth')
+  .middleware('auth')
 
 Route.post('imoveis/:id/imagens', 'ImagemController.store')
   .middleware('auth')
@@ -21,6 +21,7 @@ Route.get('imagens/:path', 'ImagemController.show')
 
 Route.resource('corretor', 'CorretorController')
   .apiOnly()
+  .middleware('auth')
 
 Route.resource('empresa', 'EmpresaController')
   .apiOnly()
